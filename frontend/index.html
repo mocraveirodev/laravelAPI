@@ -10,6 +10,7 @@
     <form id="form">
         <input type="text" name="name" id="name" placeholder="Nome">
         <input type="text" name="github" id="github" placeholder="GitHub">
+        <input type="text" name="tecnologia" id="tecnologia" placeholder="Tecnologia">
         <button type="submit">Cadastrar</button>
     </form>
 
@@ -20,13 +21,17 @@
             e.preventDefault();
             let nameProfissional = document.querySelector("#name").value;
             let githubProfissional = document.querySelector("#github").value;
+            let tecnologiaProfissional = document.querySelector("#tecnologia").value;
             let config = {
+                headers:{
+                    "Content-Type":"application/json"
+                },
                 method: "POST",
-                body: JSON.stringify({ 'name': nameProfissional, 'github': githubProfissional})
+                body: JSON.stringify({ name: nameProfissional, github: githubProfissional, tecnologia: tecnologiaProfissional})
             };
             let url = 'http://127.0.0.1:8000/api/profissionais';
 
-            fetch(url,config).then(response=>response.json).then(json=>console.log(json));
+            fetch(url,config).then(response => response.json()).then(json => console.log(json)).catch(error => console.log(error));
         });
     </script>
 </body>
